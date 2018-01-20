@@ -1,0 +1,54 @@
+import de.looksgood.ani.*;
+
+
+float x = 800;
+float y = 0;
+float z = 1000;
+float c[] = new float[10];
+
+void setup(){
+  fullScreen();
+  smooth();
+  noStroke();
+  background(100);
+  for(int i = 0; i < c.length; i++){
+    c[i] = 0;
+  }
+
+  // Aniの記述
+  Ani.init(this);
+  AniSequence seq = new AniSequence(this);
+  seq.beginSequence();
+  seq.beginStep();
+  seq.add( Ani.to( this, 1.5, "x", 900, Ani.LINEAR));
+  seq.add( Ani.to( this, 1.5, "y", 500, Ani.CUBIC_IN));
+  seq.endStep();
+  seq.beginStep();
+  seq.add( Ani.to( this, 2.0, "x", 1300, Ani.LINEAR));
+  seq.add( Ani.to( this, 2.0, "y", 100, Ani.BACK_IN));
+  seq.endStep();
+  for(int i = 0; i < c.length; i++){
+    seq.beginStep();
+    seq.add( Ani.to( this, 1.0, "x", x - 60, Ani.LINEAR));
+    seq.add( Ani.to( this, 1.0, "y", y + 600, Ani.CUBIC_IN));
+    seq.endStep();
+    seq.beginStep();
+    seq.add( Ani.to( this, 1.0, "x", x - 60, Ani.LINEAR));
+    seq.add( Ani.to( this, 1.0, "y", y - 600, Ani.CUBIC_IN));
+    seq.add( Ani.to( this, 1.0, "c[i]", 255, Ani.LINEAR));
+    seq.endStep();
+  }
+  seq.endSequence();
+
+  seq.start();
+
+  
+}
+void draw(){
+  background(100);
+  for(int i = 0; i < c.length; i++){
+    fill(c[i]);
+    rect(width - (i + 1) * width / 10, 0, width / 10, height);
+  }
+  era(x, y, 0, 0);
+}

@@ -2,7 +2,7 @@
 void era(float x, float y, float r, float f){
   fill(128);
   ellipse(x - 70 + r, y, 80, 80);
-  fill(255);
+  fill(220);
   ellipse(x - 70 + r, y, 79, 79);
   fill(0);
   beginShape();
@@ -11,7 +11,7 @@ void era(float x, float y, float r, float f){
   vertex(x + 70, y + 20);
   vertex(x - 70 + f, y + 20);
   endShape(CLOSE);
-  fill(#FFFFFF);
+  fill(220);
   beginShape();
   vertex(x - 70 + f, y + 20);
   vertex(x + 70, y + 20);
